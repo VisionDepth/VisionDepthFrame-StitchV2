@@ -32,12 +32,12 @@ Click "Start Processing" to begin compiling the video. The progress bar updates 
 ---
 
 ## **Key Features**
-✔ **Select a folder containing depth map frames.**  
-✔ **Choose an output video file format.**  
-✔ **Select video codec (XVID, H.264, MJPG, etc.)**
-✔ **Define frame rate (FPS).** 
-✔ **Utilize GPU acceleration for processing.**
-✔ **Track progress with a progress bar.**
+- ✔ Select a folder containing depth map frames.  
+- ✔ Choose an output video file format.  
+- ✔ Select video codec (XVID, H.264, MJPG, etc.)
+- ✔ Define frame rate (FPS). 
+- ✔ Utilize GPU acceleration for processing.
+- ✔ Track progress with a progress bar.
 ---
 
 This GUI is useful for **processing and converting grayscale depth maps** into an **animated sequence** for further analysis, visualization, or **3D rendering applications**. 🚀
