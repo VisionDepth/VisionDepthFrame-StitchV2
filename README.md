@@ -84,7 +84,7 @@ Click "Start Processing" to begin compiling the video. The progress bar updates 
 - ✔ Choose an output video file format.  
 - ✔ Select video codec (XVID, H.264, MJPG, etc.)
 - ✔ Define frame rate (FPS). 
-- ✔ Utilize GPU acceleration for processing.
+- ✔ Optimized multi-threaded frame processing for better performance.
 - ✔ Track progress with a progress bar.
 ---
 
