@@ -52,7 +52,7 @@ DepthFrame-Stitch is a GUI application for compiling a sequence of depth frames 
 
 ---
 
-## **How to Use the Script**
+## **How to Use the GUI**
 
 ### **1. Select Frames Folder**
 - Click "Browse" to select the folder containing your depth map frames.
