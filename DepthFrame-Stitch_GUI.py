@@ -20,7 +20,7 @@ class DepthFrameStitchGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("DepthFrame-Stitch - 3D Depth Video Compiler")
-        self.root.geometry("500x400")
+        self.root.geometry("500x500")
         self.root.resizable(False, False)
 
         # Variables
