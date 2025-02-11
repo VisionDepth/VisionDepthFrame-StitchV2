@@ -40,7 +40,7 @@ DepthFrame-Stitch is a GUI application for compiling a sequence of depth frames 
 ### Step 2: Install Python Packages
 - pip install -r requirements.txt
 
-###Step 3: Run the Application
+### Step 3: Run the Application
 - python3 DepthFrame-Stitch_GUI.py
 
 ## Troubleshooting
