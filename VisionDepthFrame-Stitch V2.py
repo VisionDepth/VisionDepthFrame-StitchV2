@@ -19,9 +19,9 @@ CODECS = {
 class DepthFrameStitchGUI:
     def __init__(self, root):
         self.root = root
-        self.root.title("DepthFrame-Stitch - 3D Depth Video Compiler")
+        self.root.title("VisionDepthFrame-Stitch V2")
         self.root.geometry("500x500")
-        self.root.resizable(False, False)
+        self.root.resizable(False, True)
 
         # Variables
         self.frames_folder = tk.StringVar()
@@ -100,15 +100,31 @@ class DepthFrameStitchGUI:
         codec_str = CODECS.get(self.selected_codec.get(), "XVID")  # Default to XVID if key is missing
         codec = cv2.VideoWriter_fourcc(*codec_str)
 
-        video = cv2.VideoWriter(self.output_file.get(), codec, fps, (width, height), isColor=False)
+        # ✅ Auto-detect frame type (Grayscale or Color)
+        first_frame = cv2.imread(frames[0])
+        if first_frame is None:
+            messagebox.showerror("Error", "Failed to load first frame. Check file format!")
+            return
+
+        is_color = len(first_frame.shape) == 3  # Check if the frame is RGB/BGR
+        print(f"🖼 Frame Type: {'RGB' if is_color else 'Grayscale'}")
+
+        video = cv2.VideoWriter(self.output_file.get(), codec, fps, (width, height), isColor=is_color)
         self.progress["maximum"] = len(frames)
         self.progress["value"] = 0
 
         def process_frame(frame_path):
-            frame = cv2.imread(frame_path, cv2.IMREAD_GRAYSCALE)
+            frame = cv2.imread(frame_path, cv2.IMREAD_UNCHANGED)  # ✅ Preserve Color if exists
             if frame is None:
                 return None
-            return cv2.resize(frame, (width, height), interpolation=cv2.INTER_LINEAR)
+
+            frame_resized = cv2.resize(frame, (width, height), interpolation=cv2.INTER_LINEAR)
+
+            # ✅ Convert only if necessary (Retains RGB if applicable)
+            if not is_color and len(frame_resized.shape) == 3:
+                frame_resized = cv2.cvtColor(frame_resized, cv2.COLOR_BGR2GRAY)
+
+            return frame_resized
 
         with ThreadPoolExecutor(max_workers=4) as executor:
             for frame in executor.map(process_frame, frames):
